@@ -5,6 +5,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -22,8 +23,7 @@ class OrderCardDeliveryTest {
         $("data-test-id=phone input").setValue("+79000000000");
         $("data-test-id=agreement").click();
         $(".button").click();
-        $("data-test-id=notification").shouldBe(Condition.visible, Duration.ofSeconds(15));
         $(withText("Успешно!")).shouldBe(Condition.visible, Duration.ofSeconds(15));
-
+        $("[data-test-id=notification] .notification__content").shouldHave(exactText("Встреча успешно забронирована на " + date)).shouldBe(Condition.visible, Duration.ofSeconds(15));
     }
 }
