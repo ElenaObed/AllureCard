@@ -17,13 +17,84 @@ class OrderCardDeliveryTest {
 
     public void shouldTest() {
         open("http://localhost:9999");
-        $("data-test-id=city input").setValue("Москва");
-        $("data-test-id=date input").setValue("26.07.2023");
-        $("data-test-id=name input").setValue("Петров Иван");
-        $("data-test-id=phone input").setValue("+79000000000");
-        $("data-test-id=agreement").click();
+        $("[data-test-id=city] input").setValue("Москва");
+        $("[data-test-id=date] input").setValue("29.07.2023");
+        $("[data-test-id=name] input").setValue("Петров Иван");
+        $("[data-test-id=phone] input").setValue("+79000000000");
+        $("[data-test-id=agreement]").click();
         $(".button").click();
         $(withText("Успешно!")).shouldBe(Condition.visible, Duration.ofSeconds(15));
         $("[data-test-id=notification] .notification__content").shouldHave(exactText("Встреча успешно забронирована на " + date)).shouldBe(Condition.visible, Duration.ofSeconds(15));
     }
-}
+    @Test
+
+    public void shouldTestDefis() {
+        open("http://localhost:9999");
+        $("[data-test-id=city] input").setValue("Москва");
+        $("[data-test-id=date] input").setValue("29.07.2023");
+        $("[data-test-id=name] input").setValue("Петров-Иванов Иван");
+        $("[data-test-id=phone] input").setValue("+79000000000");
+        $("[data-test-id=agreement]").click();
+        $(".button").click();
+        $(withText("Успешно!")).shouldBe(Condition.visible, Duration.ofSeconds(15));
+        $("[data-test-id=notification] .notification__content").shouldHave(exactText("Встреча успешно забронирована на " + date)).shouldBe(Condition.visible, Duration.ofSeconds(15));
+    }
+
+    @Test
+    public void shouldTestEngFamily() {
+        open("http://localhost:9999");
+        $("[data-test-id=city] input").setValue("Москва");
+        $("[data-test-id=date] input").setValue("29.07.2023");
+        $("[data-test-id=name] input").setValue("Petrov Ivan");
+        $("[data-test-id=phone] input").setValue("+79000000000");
+        $("[data-test-id=agreement]").click();
+        $(".button").click();
+        $("[data-test-id =name].input_invalid .input__sub").shouldHave(exactText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
+    }
+
+    @Test
+    public void shouldTestNoCity() {
+        open("http://localhost:9999");
+        $("[data-test-id=city] input").setValue("Питер");
+        $("[data-test-id=date] input").setValue("29.07.2023");
+        $("[data-test-id=name] input").setValue("Петров Иван");
+        $("[data-test-id=phone] input").setValue("+79000000000");
+        $("[data-test-id=agreement]").click();
+        $(".button").click();
+        $("[data-test-id =city].input_invalid .input__sub").shouldHave(exactText("Доставка в выбранный город недоступна"));
+    }
+
+    @Test
+    public void shouldTestPhone() {
+        open("http://localhost:9999");
+        $("[data-test-id=city] input").setValue("Москва");
+        $("[data-test-id=date] input").setValue("29.07.2023");
+        $("[data-test-id=name] input").setValue("Петров Иван");
+        $("[data-test-id=phone] input").setValue("+790");
+        $("[data-test-id=agreement]").click();
+        $(".button").click();
+        $("[data-test-id =phone].input_invalid .input__sub").shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
+    }
+    @Test
+        public void shouldTestPhoneEth() {
+            open("http://localhost:9999");
+            $("[data-test-id=city] input").setValue("Москва");
+        $("[data-test-id=date] input").setValue("29.07.2023");
+        $("[data-test-id=name] input").setValue("Петров Иван");
+        $("[data-test-id=phone] input").setValue("8900000000");
+        $("[data-test-id=agreement]").click();
+        $(".button").click();
+        $("[data-test-id =phone].input_invalid .input__sub").shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
+    }
+    @Test
+    public void shouldTestPole() {
+        open("http://localhost:9999");
+        $("[data-test-id=city] input").setValue("Москва");
+        $("[data-test-id=date] input").setValue("29.07.2023");
+        $("[data-test-id=name] input").setValue("");
+        $("[data-test-id=phone] input").setValue("8900000000");
+        $("[data-test-id=agreement]").click();
+        $(".button").click();
+        $("[data-test-id =name].input_invalid .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
+    }
+   }
