@@ -1,5 +1,6 @@
 import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Keys;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -18,7 +19,8 @@ class OrderCardDeliveryTest {
     public void shouldTest() {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Москва");
-        $("[data-test-id=date] input").setValue("29.07.2023");
+        $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME));
+        $("[data-test-id=date] input").setValue("date");
         $("[data-test-id=name] input").setValue("Петров Иван");
         $("[data-test-id=phone] input").setValue("+79000000000");
         $("[data-test-id=agreement]").click();
@@ -26,12 +28,14 @@ class OrderCardDeliveryTest {
         $(withText("Успешно!")).shouldBe(Condition.visible, Duration.ofSeconds(15));
         $("[data-test-id=notification] .notification__content").shouldHave(exactText("Встреча успешно забронирована на " + date)).shouldBe(Condition.visible, Duration.ofSeconds(15));
     }
+
     @Test
 
     public void shouldTestDefis() {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Москва");
-        $("[data-test-id=date] input").setValue("29.07.2023");
+        $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME));
+        $("[data-test-id=date] input").setValue("date");
         $("[data-test-id=name] input").setValue("Петров-Иванов Иван");
         $("[data-test-id=phone] input").setValue("+79000000000");
         $("[data-test-id=agreement]").click();
@@ -44,7 +48,8 @@ class OrderCardDeliveryTest {
     public void shouldTestEngFamily() {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Москва");
-        $("[data-test-id=date] input").setValue("29.07.2023");
+        $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME));
+        $("[data-test-id=date] input").setValue("date");
         $("[data-test-id=name] input").setValue("Petrov Ivan");
         $("[data-test-id=phone] input").setValue("+79000000000");
         $("[data-test-id=agreement]").click();
@@ -56,7 +61,8 @@ class OrderCardDeliveryTest {
     public void shouldTestNoCity() {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Питер");
-        $("[data-test-id=date] input").setValue("29.07.2023");
+        $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME));
+        $("[data-test-id=date] input").setValue("date");
         $("[data-test-id=name] input").setValue("Петров Иван");
         $("[data-test-id=phone] input").setValue("+79000000000");
         $("[data-test-id=agreement]").click();
@@ -68,33 +74,38 @@ class OrderCardDeliveryTest {
     public void shouldTestPhone() {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Москва");
-        $("[data-test-id=date] input").setValue("29.07.2023");
+        $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME));
+        $("[data-test-id=date] input").setValue("date");
         $("[data-test-id=name] input").setValue("Петров Иван");
         $("[data-test-id=phone] input").setValue("+790");
         $("[data-test-id=agreement]").click();
         $(".button").click();
         $("[data-test-id =phone].input_invalid .input__sub").shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
     }
+
     @Test
-        public void shouldTestPhoneEth() {
-            open("http://localhost:9999");
-            $("[data-test-id=city] input").setValue("Москва");
-        $("[data-test-id=date] input").setValue("29.07.2023");
+    public void shouldTestPhoneEth() {
+        open("http://localhost:9999");
+        $("[data-test-id=city] input").setValue("Москва");
+        $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME));
+        $("[data-test-id=date] input").setValue("date");
         $("[data-test-id=name] input").setValue("Петров Иван");
         $("[data-test-id=phone] input").setValue("8900000000");
         $("[data-test-id=agreement]").click();
         $(".button").click();
         $("[data-test-id =phone].input_invalid .input__sub").shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
     }
+
     @Test
     public void shouldTestPole() {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Москва");
-        $("[data-test-id=date] input").setValue("29.07.2023");
+        $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME));
+        $("[data-test-id=date] input").setValue("date");
         $("[data-test-id=name] input").setValue("");
         $("[data-test-id=phone] input").setValue("8900000000");
         $("[data-test-id=agreement]").click();
         $(".button").click();
         $("[data-test-id =name].input_invalid .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
     }
-   }
+}
