@@ -19,8 +19,8 @@ class OrderCardDeliveryTest {
     public void shouldTest() {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Москва");
-        $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME));
-        $("[data-test-id=date] input").setValue("date");
+        $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT));
+        $("[data-test-id=date] input").setValue(date);
         $("[data-test-id=name] input").setValue("Петров Иван");
         $("[data-test-id=phone] input").setValue("+79000000000");
         $("[data-test-id=agreement]").click();
@@ -35,7 +35,7 @@ class OrderCardDeliveryTest {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Москва");
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME));
-        $("[data-test-id=date] input").setValue("date");
+        $("[data-test-id=date] input").setValue(date);
         $("[data-test-id=name] input").setValue("Петров-Иванов Иван");
         $("[data-test-id=phone] input").setValue("+79000000000");
         $("[data-test-id=agreement]").click();
@@ -49,7 +49,7 @@ class OrderCardDeliveryTest {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Москва");
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME));
-        $("[data-test-id=date] input").setValue("date");
+        $("[data-test-id=date] input").setValue(date);
         $("[data-test-id=name] input").setValue("Petrov Ivan");
         $("[data-test-id=phone] input").setValue("+79000000000");
         $("[data-test-id=agreement]").click();
@@ -62,7 +62,7 @@ class OrderCardDeliveryTest {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Питер");
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME));
-        $("[data-test-id=date] input").setValue("date");
+        $("[data-test-id=date] input").setValue(date);
         $("[data-test-id=name] input").setValue("Петров Иван");
         $("[data-test-id=phone] input").setValue("+79000000000");
         $("[data-test-id=agreement]").click();
@@ -75,7 +75,7 @@ class OrderCardDeliveryTest {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Москва");
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME));
-        $("[data-test-id=date] input").setValue("date");
+        $("[data-test-id=date] input").setValue(date);
         $("[data-test-id=name] input").setValue("Петров Иван");
         $("[data-test-id=phone] input").setValue("+790");
         $("[data-test-id=agreement]").click();
@@ -88,7 +88,7 @@ class OrderCardDeliveryTest {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Москва");
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME));
-        $("[data-test-id=date] input").setValue("date");
+        $("[data-test-id=date] input").setValue(date);
         $("[data-test-id=name] input").setValue("Петров Иван");
         $("[data-test-id=phone] input").setValue("8900000000");
         $("[data-test-id=agreement]").click();
@@ -101,7 +101,7 @@ class OrderCardDeliveryTest {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Москва");
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME));
-        $("[data-test-id=date] input").setValue("date");
+        $("[data-test-id=date] input").setValue(date);
         $("[data-test-id=name] input").setValue("");
         $("[data-test-id=phone] input").setValue("8900000000");
         $("[data-test-id=agreement]").click();
